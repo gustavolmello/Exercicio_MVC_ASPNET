@@ -1,3 +1,5 @@
+using ExercicioMVC01.Repository.Interfaces;
+using ExercicioMVC01.Repository.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -23,6 +25,11 @@ namespace ExercicioMVC01.Presentation
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            var connectionstring = Configuration.GetConnectionString("Banco01");
+
+            services.AddTransient<IFuncionarioRepository, FuncionarioRepository>
+                (map => new FuncionarioRepository(connectionstring));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

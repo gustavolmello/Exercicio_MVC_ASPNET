@@ -1,11 +1,61 @@
-﻿
+﻿@model ExercicioMVC01.Presentation.Models.FuncionariosConsultaModel
+
 @{
     ViewData["Title"] = "Consulta";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h5>Consulta de funcionários</h5>
-<p>
-    Listagem dos funcionários cadastrados.
-</p>
 
+
+@using (Html.BeginForm())
+{
+   
+<div class="row">
+    
+
+    <div class="col-md-6">
+       <input type="submit" value="Pesquisar Funcionário" class="btn btn-success" />
+    </div>
+
+</div>    
+}
+
+<br/>
+
+@if(Model != null)
+{
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>CPF</th>
+                <th>Matrícula</th>
+                <th>Salário</th>
+                <th>Data de Cadastro</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Funcionarios)
+            {
+                <tr>
+                    <td>@item.Nome</td>
+                    <td>@item.Cpf</td>
+                    <td>@item.Matricula</td>
+                    <td>@item.Salario</td>
+                    <td>@item.DataCadastro.ToString("ddd dd/mm yyyy")</td>
+                    <td>
+                        <a href="#" class="btn btn-primary btn-sm">Alterar</a>
+                        <a href="#" class="btn btn-danger btn-sm">Excluir</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="6">Quantidade de tarefas: @Model.Funcionarios.Count</td>
+            </tr>
+        </tfoot>
+    </table>
+
+}

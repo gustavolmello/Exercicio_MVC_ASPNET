@@ -67,7 +67,7 @@ namespace ExercicioMVC01.Repository.Repository
         {
             var query = @"
                         SELECT * FROM FUNCIONARIO
-                        ORDER BY NAME
+                        ORDER BY NOME
                 ";
 
             using (var connection = new SqlConnection(_connectionstring))
